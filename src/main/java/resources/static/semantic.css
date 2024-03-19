@@ -14757,7 +14757,8 @@ a.ui.label {
 
 .ui.card .image > .ui.ribbon.label,
 .ui.image > .ui.ribbon.label {
-  left: calc(--0.05rem - 1.2em);
+  left:
+      calc(--0.05rem - 1.2em);
 }
 
 .ui.card .image > .ui[class*="right ribbon"].label,

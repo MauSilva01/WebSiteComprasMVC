@@ -23,10 +23,9 @@ import com.example.Compras.web.Models.ListaMercadosModel;
 @RequestMapping("/mercados")
 public class MercadoController {
 
-	 private final String JDBC_DRIVER = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
-	 private static final String DB_URL = "jdbc:sqlserver://localhost:1433;databaseName=COMPRAS;trustServerCertificate=true";
-	 private static final String Usuario = "MauricioAlves";  
-	 private static final String Senha = "Banana10";
+	
+	 private static final String DB_URL = "jdbc:sqlite:C:\\PROGRAMAS\\ComprasSpringMvc\\BancoDados\\COMPRAS.db";
+	
 	 
 	@RequestMapping("/listar")
     public ModelAndView redirecionarListaMercados() {
@@ -49,8 +48,8 @@ public class MercadoController {
     {
     		 
 	     try {
-	    	 Class.forName(JDBC_DRIVER);
-	         Connection conn = DriverManager.getConnection(DB_URL,Usuario,Senha);
+	    	
+	         Connection conn = DriverManager.getConnection(DB_URL);
 	         String sql = "SELECT MERCADOS FROM TABELA_MERCADOS WHERE id = ?";
 	         PreparedStatement stmt = conn.prepareStatement(sql);
 	         stmt.setString(1,id);
@@ -80,8 +79,8 @@ public class MercadoController {
 	    PreparedStatement stmt = null;
 	    
 	    try {
-	    	Class.forName(JDBC_DRIVER);
-	    	conn = DriverManager.getConnection(DB_URL,Usuario, Senha);
+	   
+	    	conn = DriverManager.getConnection(DB_URL);
 	    	String sql = "UPDATE TABELA_MERCADOS SET MERCADOS = ? WHERE id = ?";
 	    	stmt = conn.prepareStatement(sql);
 	    	 stmt.setString(1, 	mercados);
@@ -111,8 +110,8 @@ public class MercadoController {
     	
 
     	try {	
-    		Class.forName(JDBC_DRIVER);
-    		conn = DriverManager.getConnection(DB_URL, Usuario, Senha);
+    		
+    		conn = DriverManager.getConnection(DB_URL);
     		String sql = "DELETE FROM TABELA_MERCADOS WHERE id = ?";
     		stmt = conn.prepareStatement(sql);       
     		stmt.setInt(1, id);         
@@ -148,8 +147,8 @@ public class MercadoController {
     	PreparedStatement stmt = null;
     	
     	try {
-    		Class.forName(JDBC_DRIVER);
-    		conn = DriverManager.getConnection(DB_URL, Usuario, Senha);
+    		
+    		conn = DriverManager.getConnection(DB_URL);
     		String sql = "INSERT INTO TABELA_MERCADOS (MERCADOS) VALUES(?)";
     		stmt = conn.prepareStatement(sql);    
     		stmt.setString(1, mercados);

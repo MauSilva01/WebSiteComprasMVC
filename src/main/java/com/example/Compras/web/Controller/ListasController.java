@@ -23,10 +23,10 @@ import com.example.Compras.web.Models.ListaComprasModel;
 @RequestMapping("/lista")
 public class ListasController {
 	
-	private final String JDBC_DRIVER = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
-	 private static final String DB_URL = "jdbc:sqlserver://localhost:1433;databaseName=COMPRAS;trustServerCertificate=true";
-	 private static final String Usuario = "MauricioAlves";  
-	 private static final String Senha = "Banana10";
+        
+	 private static final String DB_URL = "jdbc:sqlite:C:\\PROGRAMAS\\ComprasSpringMvc\\BancoDados\\COMPRAS.db";
+//	 private static final String Usuario = "MauricioAlves";  
+//	 private static final String Senha = "Banana10";
 	 
 
 	@RequestMapping("/listar")
@@ -49,8 +49,8 @@ public class ListasController {
     {
     		 
 	     try {
-	    	 Class.forName(JDBC_DRIVER);
-	         Connection conn = DriverManager.getConnection(DB_URL,Usuario,Senha);
+	    	 
+	         Connection conn = DriverManager.getConnection(DB_URL);
 	         String sql = "SELECT LISTA_DE_COMPRAS FROM LISTAS_COMPRAS WHERE id = ?";
 	         PreparedStatement stmt = conn.prepareStatement(sql);
 	         stmt.setString(1,id);
@@ -79,8 +79,8 @@ public class ListasController {
 	    PreparedStatement stmt = null;
 	    
 	    try {
-	    	Class.forName(JDBC_DRIVER);
-	    	conn = DriverManager.getConnection(DB_URL,Usuario, Senha);
+	    	
+	    	conn = DriverManager.getConnection(DB_URL);
 	    	String sql = "UPDATE LISTAS_COMPRAS SET LISTA_DE_COMPRAS = ? WHERE id = ?";
 	    	stmt = conn.prepareStatement(sql);
 	    	 stmt.setString(1, 	comprasList);
@@ -110,8 +110,8 @@ public class ListasController {
     	
 
     	try {	
-    		Class.forName(JDBC_DRIVER);
-    		conn = DriverManager.getConnection(DB_URL, Usuario, Senha);
+    		
+    		conn = DriverManager.getConnection(DB_URL);
     		String sql = "DELETE FROM LISTAS_COMPRAS WHERE id = ?";
     		stmt = conn.prepareStatement(sql);       
     		stmt.setInt(1, id);         
@@ -147,8 +147,8 @@ public class ListasController {
     	PreparedStatement stmt = null;
     	
     	try {
-    		Class.forName(JDBC_DRIVER);
-    		conn = DriverManager.getConnection(DB_URL, Usuario, Senha);
+    		
+    		conn = DriverManager.getConnection(DB_URL);
     		String sql = "INSERT INTO LISTAS_COMPRAS (LISTA_DE_COMPRAS) VALUES(?)";
     		stmt = conn.prepareStatement(sql);    
     		stmt.setString(1, comprasList);

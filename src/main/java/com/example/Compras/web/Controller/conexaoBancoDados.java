@@ -19,13 +19,12 @@ import com.example.Compras.web.Models.ListaProdutosModel;
 public class conexaoBancoDados {
 	public static Connection obterConexao()  {
 
-		String url = "jdbc:sqlserver://localhost:1433;databaseName=COMPRAS;trustServerCertificate=true";
-		String nome = "MauricioAlves";
-		String senha = "Banana10";
+		String url = "jdbc:sqlite:C:\\PROGRAMAS\\ComprasSpringMvc\\BancoDados\\COMPRAS.db";
+		
 		Connection conn = null;
 		try {
-			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-			conn = DriverManager.getConnection(url, nome,senha);
+			
+			conn = DriverManager.getConnection(url);
 		        System.out.println("Conexão com o banco de dados Access estabelecida com sucesso!");
 		} 
 		catch (Exception e) {
